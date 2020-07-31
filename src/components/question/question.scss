@@ -1,0 +1,29 @@
+div.question {
+  padding: 1rem;
+  background-color: #303030;
+  border-radius: 0.25rem;
+  &>img {
+    width: 10rem;
+    height: 8rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    border: 2px solid #FFFAFA;
+  }
+}
+
+.stars {
+  color: #FFFAFA;
+  letter-spacing: 5px;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.hr {
+  border: 1px solid #FFFAFA;
+  margin: 0.5rem 0;
+}
+
+audio {
+  width: stretch;
+}

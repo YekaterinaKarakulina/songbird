@@ -2,14 +2,14 @@
   color: #222;
   letter-spacing: 0.75px;
 }
-nav {
+
+.nav {
   margin: 1rem 0;
-  
   background-color: darken($color:#EEE8AA, $amount: 10);
+  border-radius: 0.25rem;
   &>a {
     cursor: initial;
   }
-  border: 2px solid red;
 }
 
 .nav-pills .nav-link {
