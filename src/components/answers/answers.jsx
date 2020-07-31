@@ -5,7 +5,6 @@ import './answers.scss';
 export default class Answers extends React.Component {
   render() {
     return (
-
       <ul className="list-group col-md-6">
         <li className="list-group-item">
           <span className="li-button"></span>
@@ -32,8 +31,6 @@ export default class Answers extends React.Component {
           Синица
         </li>
       </ul>
-
-
     )
   }
 }

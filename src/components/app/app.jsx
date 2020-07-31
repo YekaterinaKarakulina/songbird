@@ -5,6 +5,7 @@ import NavPanel from '../nav-panel';
 import Question from '../question';
 import Answers from '../answers';
 import Description from '../description';
+import Button from '../button';
 
 import './app.scss';
 
@@ -18,9 +19,8 @@ export default class App extends React.Component {
         <div className="row mx-0 my-3 p-3 main">
           <Answers />
           <Description />
-
-
         </div>
+        <Button />
       </div>
     )
   }
