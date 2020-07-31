@@ -5,7 +5,7 @@ import './question.scss';
 export default class Question extends React.Component {
   render() {
     return (
-      <div className="question d-flex flex-column flex-sm-row">
+      <div className="question d-flex flex-column flex-sm-row p-3">
         <img className="align-self-center" src="https://live.staticflickr.com//65535//49366595303_06cf65b07e.jpg" alt="воробей" />
         <div className="d-flex flex-column mx-3 flex-fill">
           <div className="stars mt-3 mt-sm-0">*****</div>
