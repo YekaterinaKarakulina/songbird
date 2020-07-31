@@ -1,0 +1,12 @@
+.description {
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  min-height: 100%;
+  &>ul, &>ul>li {
+    height: 100%;
+    &:hover {
+      background-color: #FFFAFA;
+      cursor: initial;
+    }
+  }
+}

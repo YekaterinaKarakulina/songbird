@@ -6,29 +6,29 @@ export default class Answers extends React.Component {
   render() {
     return (
 
-      <ul class="list-group col-md-6">
-        <li class="list-group-item">
-          <span class="li-button"></span>
+      <ul className="list-group col-md-6">
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Ворон
         </li>
-        <li class="list-group-item">
-          <span class="li-button"></span>
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Журавль
         </li>
-        <li class="list-group-item">
-          <span class="li-button"></span>
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Ласточка
         </li>
-        <li class="list-group-item">
-          <span class="li-button"></span>
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Козодой
         </li>
-        <li class="list-group-item">
-          <span class="li-button"></span>
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Кукушка
         </li>
-        <li class="list-group-item">
-          <span class="li-button"></span>
+        <li className="list-group-item">
+          <span className="li-button"></span>
           Синица
         </li>
       </ul>
