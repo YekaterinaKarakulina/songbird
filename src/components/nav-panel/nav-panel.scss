@@ -1,0 +1,23 @@
+.nav-link {
+  color: #222;
+  letter-spacing: 0.75px;
+}
+nav {
+  margin: 1rem 0;
+  
+  background-color: darken($color:#EEE8AA, $amount: 10);
+  &>a {
+    cursor: initial;
+  }
+  border: 2px solid red;
+}
+
+.nav-pills .nav-link {
+  &:hover {
+    color: #222;
+  }
+  &.active {
+    background-color: darken($color:#00BFFF, $amount: 10);
+    color: #FFFAFA;
+  }
+}
