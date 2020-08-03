@@ -1,14 +1,9 @@
 import React from 'react';
 
 const Image = (props) => {
-  const { image, name, isAnswerCorrect } = props;
-  if (isAnswerCorrect) {
-    return (
-      <img className="align-self-center" src={image} alt={name} />
-    )
-  }
+  const { image, name } = props;
   return (
-    <img className="align-self-center" src="../assets/bird.jpg" alt={'bird image'} />
+    <img className="align-self-center" src={image} alt={name} />
   )
 }
 

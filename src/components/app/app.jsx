@@ -17,6 +17,7 @@ export default class App extends React.Component {
     questionNumber: 0,
     questionData: null,
     answersData: null,
+    selectedAnswerId: null,
     isAnswerCorrect: false,
     incorrectAttemptsAmount: 0
   }
@@ -30,6 +31,10 @@ export default class App extends React.Component {
 
   onAnswerClick = (event) => {
     console.log('onAnswerClickApp');
+    console.log(`id ${event.target.getAttribute('data-id')}`);
+    this.setState({
+      selectedAnswerId: event.target.getAttribute('data-id')
+    })
     if (!this.state.isAnswerCorrect) {
       if (event.target.textContent === this.state.questionData.name) {
         console.log('correct');
@@ -46,12 +51,18 @@ export default class App extends React.Component {
 
   render() {
 
-    const { questionData, answersData } = this.state;
+    const {
+      questionNumber,
+      questionData,
+      answersData,
+      isAnswerCorrect,
+      selectedAnswerId } = this.state;
+
     const question = questionData ? <Question
       name={questionData.name}
       image={questionData.image}
       audio={questionData.audio}
-      isAnswerCorrect={this.state.isAnswerCorrect} /> : null;
+      isAnswerCorrect={isAnswerCorrect} /> : null;
 
     const answers = answersData ? <Answers
       answersData={answersData}
@@ -61,11 +72,11 @@ export default class App extends React.Component {
     return (
       <div className="container">
         <Header />
-        <NavPanel questionNumber={this.state.questionNumber} />
+        <NavPanel questionNumber={questionNumber} />
         {question}
         <div className="row mx-0 my-3 p-3 main">
           {answers}
-          <Description />
+          <Description answersData={answersData} selectedAnswerId={selectedAnswerId} />
         </div>
         <Button />
       </div>

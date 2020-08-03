@@ -7,9 +7,13 @@ const Question = (props) => {
   console.log(props);
   const { name, image, audio, isAnswerCorrect } = props;
 
+  const imageComponent = isAnswerCorrect ?
+    <Image name={name} image={image} /> :
+    <Image name={"bird image"} image={"../assets/bird.jpg"} />
+
   return (
     <div className="question d-flex flex-column flex-sm-row p-3">
-      <Image name={name} image={image} isAnswerCorrect={isAnswerCorrect} />
+      {imageComponent}
       <div className="d-flex flex-column mx-3 flex-fill">
         <div className="stars mt-3 mt-sm-0">{isAnswerCorrect ? name : '*****'}</div>
         <div className="hr"></div>
