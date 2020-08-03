@@ -8,7 +8,7 @@ const Image = (props) => {
     )
   }
   return (
-    <img className="align-self-center" src="../assets/bird.js" alt={'bird image'} />
+    <img className="align-self-center" src="../assets/bird.jpg" alt={'bird image'} />
   )
 }
 
