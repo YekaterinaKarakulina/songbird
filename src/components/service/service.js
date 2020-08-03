@@ -2,9 +2,9 @@ import birdData from './data';
 
 const getQuestionData = (questionNumber) => {
   const randomNumber = Math.floor(Math.random() * Math.floor(6));
-  const currentData = birdData[questionNumber][randomNumber];
-  console.log(currentData);
-  return currentData;
+  const questionData = birdData[questionNumber][randomNumber];
+  console.log(questionData);
+  return questionData;
 }
 
 export {

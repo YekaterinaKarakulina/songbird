@@ -31,7 +31,11 @@ export default class App extends React.Component {
   render() {
 
     const { data } = this.state;
-    const question = data ? <Question name={data.name} image={data.image} audio={data.audio} /> : null;
+    const question = data ? <Question
+      name={data.name}
+      image={data.image}
+      audio={data.audio}
+      isAnswerCorrect={this.state.isAnswerCorrect} /> : null;
 
     return (
       <div className="container">
