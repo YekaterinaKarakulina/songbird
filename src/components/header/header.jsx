@@ -11,7 +11,7 @@ export default class Header extends React.Component {
           <span>Bird</span>
         </h1>
         <div className="score">Score:
-          <span> 0</span>
+          <span> {this.props.score}</span>
         </div>
       </header>
     )

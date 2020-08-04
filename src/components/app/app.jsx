@@ -20,7 +20,6 @@ export default class App extends React.Component {
     answersData: null,
     selectedAnswerId: null,
     isAnswerCorrect: false,
-    incorrectAttemptsAmount: 0,
     answersState: [
       { id: 1, addClass: null },
       { id: 2, addClass: null },
@@ -28,7 +27,10 @@ export default class App extends React.Component {
       { id: 4, addClass: null },
       { id: 5, addClass: null },
       { id: 6, addClass: null },
-    ]
+    ],
+    score: 0,
+    currentScore: 5,
+    maxScore: 30,
   }
 
   componentDidMount() {
@@ -73,10 +75,18 @@ export default class App extends React.Component {
     if (!this.state.isAnswerCorrect) {
       if (event.target.textContent === this.state.questionData.name) {
         this.updateAnswersState(answerId, 'correct');
-        this.setState({
-          isAnswerCorrect: true
+        this.setState(({ currentScore, score }) => {
+          return {
+            score: score += currentScore,
+            isAnswerCorrect: true
+          }
         })
       } else {
+        this.setState(({ currentScore }) => {
+          return {
+            currentScore: currentScore -= 1
+          }
+        })
         this.updateAnswersState(answerId, 'wrong');
       }
     }
@@ -87,6 +97,7 @@ export default class App extends React.Component {
     if (isAnswerCorrect && questionsAmount > questionNumber) {
       this.setState(({ questionNumber }) => {
         return {
+          currentScore: 5,
           questionNumber: questionNumber += 1,
           selectedAnswerId: null,
           isAnswerCorrect: false,
@@ -113,6 +124,7 @@ export default class App extends React.Component {
 
   render() {
     const {
+      score,
       questionNumber,
       questionData,
       answersData,
@@ -136,9 +148,10 @@ export default class App extends React.Component {
       selectedAnswerData={this.filterSelectedAnswer()}
     /> : <Description selectedAnswerData={undefined} />
 
+    console.log(this.state);
     return (
       <div className="container">
-        <Header />
+        <Header score={score} />
         <NavPanel questionNumber={questionNumber} />
         {question}
         <div className="row mx-0 my-3 p-3 main">
