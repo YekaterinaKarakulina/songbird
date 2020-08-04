@@ -83,8 +83,8 @@ export default class App extends React.Component {
   }
 
   onNextButtonClick = () => {
-    console.log(`questionsAmount ${this.state.questionsAmount}, questionNumber ${this.state.questionNumber}`)
-    if (this.state.isAnswerCorrect) {
+    const { questionsAmount, questionNumber, isAnswerCorrect } = this.state;
+    if (isAnswerCorrect && questionsAmount > questionNumber) {
       this.setState(({ questionNumber }) => {
         return {
           questionNumber: questionNumber += 1,
@@ -100,6 +100,8 @@ export default class App extends React.Component {
           ]
         }
       })
+    } else {
+      console.log('FINISH!!!!!');
     }
   }
 
@@ -110,9 +112,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log('render');
-    console.log(this.state);
-
     const {
       questionNumber,
       questionData,
