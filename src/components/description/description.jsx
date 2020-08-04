@@ -11,15 +11,15 @@ const Description = (props) => {
   }
 
   const descriptionBody = props.selectedAnswerData ? <div>
-    <div className="row">
-      <div className="col-md-6">
+    <div className="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between pb-3">
+      <div className="d-flex flex-column">
         <Image name={selectedAnswer.name} image={selectedAnswer.image} />
       </div>
-      <div className="col-md-6">
+      <div className="d-flex flex-column flex-fill pl-0 pl-sm-3 pl-md-0 pl-lg-3">
         <h4>{selectedAnswer.name}</h4>
-        <div className="hr"></div>
+        <div className="hr dark"></div>
         <div>{selectedAnswer.species}</div>
-        <div className="hr"></div>
+        <div className="hr dark"></div>
         <audio controls className="mt-3">
           <source src={selectedAnswer.audio} type="audio/mpeg" />
                   Your browser does not support the audio element.
@@ -34,7 +34,7 @@ const Description = (props) => {
   </div>
 
   return (
-    <div className="description col-md-6 pl-0">
+    <div className="description col-md-6 px-0">
       <ul className="list-group">
         <li className="list-group-item">
           {descriptionBody}

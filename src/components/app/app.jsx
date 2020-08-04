@@ -19,35 +19,62 @@ export default class App extends React.Component {
     answersData: null,
     selectedAnswerId: null,
     isAnswerCorrect: false,
-    incorrectAttemptsAmount: 0
+    incorrectAttemptsAmount: 0,
   }
 
   componentDidMount() {
     const { questionNumber } = this.state;
-
+    console.log('componentDidMount');
     this.setState({
       questionData: getQuestionData(questionNumber),
       answersData: getAnswersData(questionNumber)
     })
   }
 
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    const { questionNumber, questionData, answersData } = this.state;
+    console.log(this.state);
+    const newQuestionData = getQuestionData(questionNumber);
+    const newAnswerData = getAnswersData(questionNumber);
+    if (questionData !== newQuestionData && answersData !== newAnswerData)
+      this.setState({
+        questionData: newQuestionData,
+        answersData: newAnswerData
+      })
+  }
+
+
   onAnswerClick = (event) => {
     console.log('onAnswerClickApp');
-    console.log(`id ${event.target.getAttribute('data-id')}`);
     this.setState({
       selectedAnswerId: event.target.getAttribute('data-id')
     })
     if (!this.state.isAnswerCorrect) {
       if (event.target.textContent === this.state.questionData.name) {
         console.log('correct');
-        event.target.querySelector('.li-button').classList.add('correct');
+        // event.target.querySelector('.li-button').classList.add('correct');
         this.setState({
           isAnswerCorrect: true
         })
       } else {
         console.log('wrong');
-        event.target.querySelector('.li-button').classList.add('wrong');
+        // event.target.querySelector('.li-button').classList.add('wrong');
       }
+    }
+  }
+
+  onNextButtonClick = () => {
+    if (this.state.isAnswerCorrect) {
+      this.setState(({ questionNumber }) => {
+        return {
+          questionNumber: questionNumber += 1,
+          selectedAnswerId: null,
+          isAnswerCorrect: false
+        }
+      })
+      console.log('onNextButtonClick');
+      console.log(this.state)
     }
   }
 
@@ -58,6 +85,8 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log('render');
+    console.log(this.state);
 
     const {
       questionNumber,
@@ -90,7 +119,7 @@ export default class App extends React.Component {
           {answers}
           {description}
         </div>
-        <Button />
+        <Button onNextButtonClick={this.onNextButtonClick} />
       </div>
     )
   }
