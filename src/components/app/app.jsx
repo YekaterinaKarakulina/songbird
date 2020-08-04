@@ -15,16 +15,24 @@ export default class App extends React.Component {
 
   state = {
     questionNumber: 0,
+    questionsAmount: 5,
     questionData: null,
     answersData: null,
     selectedAnswerId: null,
     isAnswerCorrect: false,
     incorrectAttemptsAmount: 0,
+    answersState: [
+      { id: 1, addClass: null },
+      { id: 2, addClass: null },
+      { id: 3, addClass: null },
+      { id: 4, addClass: null },
+      { id: 5, addClass: null },
+      { id: 6, addClass: null },
+    ]
   }
 
   componentDidMount() {
     const { questionNumber } = this.state;
-    console.log('componentDidMount');
     this.setState({
       questionData: getQuestionData(questionNumber),
       answersData: getAnswersData(questionNumber)
@@ -32,7 +40,6 @@ export default class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate');
     const { questionNumber, questionData, answersData } = this.state;
     console.log(this.state);
     const newQuestionData = getQuestionData(questionNumber);
@@ -44,37 +51,55 @@ export default class App extends React.Component {
       })
   }
 
+  updateAnswersState = (answerId, className) => {
+    this.setState(({ answersState }) => {
+      const newAnswersState = answersState;
+      const currentSelected = newAnswersState.filter((el) => el.id === answerId)
+      const ind = newAnswersState.indexOf(currentSelected[0]);
+      currentSelected[0].addClass = className;
+      newAnswersState[ind] = currentSelected[0];
+      return {
+        answersState: newAnswersState
+      }
+    })
+  }
 
   onAnswerClick = (event) => {
     console.log('onAnswerClickApp');
+    const answerId = Number(event.target.getAttribute('data-id'));
     this.setState({
-      selectedAnswerId: event.target.getAttribute('data-id')
+      selectedAnswerId: answerId
     })
     if (!this.state.isAnswerCorrect) {
       if (event.target.textContent === this.state.questionData.name) {
-        console.log('correct');
-        // event.target.querySelector('.li-button').classList.add('correct');
+        this.updateAnswersState(answerId, 'correct');
         this.setState({
           isAnswerCorrect: true
         })
       } else {
-        console.log('wrong');
-        // event.target.querySelector('.li-button').classList.add('wrong');
+        this.updateAnswersState(answerId, 'wrong');
       }
     }
   }
 
   onNextButtonClick = () => {
+    console.log(`questionsAmount ${this.state.questionsAmount}, questionNumber ${this.state.questionNumber}`)
     if (this.state.isAnswerCorrect) {
       this.setState(({ questionNumber }) => {
         return {
           questionNumber: questionNumber += 1,
           selectedAnswerId: null,
-          isAnswerCorrect: false
+          isAnswerCorrect: false,
+          answersState: [
+            { id: 1, addClass: null },
+            { id: 2, addClass: null },
+            { id: 3, addClass: null },
+            { id: 4, addClass: null },
+            { id: 5, addClass: null },
+            { id: 6, addClass: null },
+          ]
         }
       })
-      console.log('onNextButtonClick');
-      console.log(this.state)
     }
   }
 
@@ -93,7 +118,8 @@ export default class App extends React.Component {
       questionData,
       answersData,
       isAnswerCorrect,
-      selectedAnswerId } = this.state;
+      selectedAnswerId,
+      answersState } = this.state;
 
     const question = questionData ? <Question
       name={questionData.name}
@@ -104,6 +130,7 @@ export default class App extends React.Component {
     const answers = answersData ? <Answers
       answersData={answersData}
       onAnswerClick={this.onAnswerClick}
+      answersState={answersState}
     /> : null;
 
     const description = selectedAnswerId ? <Description
