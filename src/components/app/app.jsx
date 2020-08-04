@@ -7,7 +7,7 @@ import Answers from '../answers';
 import Description from '../description';
 import Button from '../button';
 
-import { getQuestionData, getAnswersData } from '../service/service';
+import { getQuestionData, getAnswersData } from '../../service';
 
 import './app.scss';
 
@@ -23,9 +23,11 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    const { questionNumber } = this.state;
+
     this.setState({
-      questionData: getQuestionData(this.state.questionNumber),
-      answersData: getAnswersData(this.state.questionNumber)
+      questionData: getQuestionData(questionNumber),
+      answersData: getAnswersData(questionNumber)
     })
   }
 
@@ -49,6 +51,12 @@ export default class App extends React.Component {
     }
   }
 
+  filterSelectedAnswer = () => {
+    const { answersData, selectedAnswerId } = this.state;
+    return answersData
+      .filter((item) => item.id === Number(selectedAnswerId))[0];
+  }
+
   render() {
 
     const {
@@ -69,6 +77,10 @@ export default class App extends React.Component {
       onAnswerClick={this.onAnswerClick}
     /> : null;
 
+    const description = selectedAnswerId ? <Description
+      selectedAnswerData={this.filterSelectedAnswer()}
+    /> : <Description selectedAnswerData={undefined} />
+
     return (
       <div className="container">
         <Header />
@@ -76,7 +88,7 @@ export default class App extends React.Component {
         {question}
         <div className="row mx-0 my-3 p-3 main">
           {answers}
-          <Description answersData={answersData} selectedAnswerId={selectedAnswerId} />
+          {description}
         </div>
         <Button />
       </div>

@@ -1,40 +1,37 @@
 import React from 'react';
 
-import './description.scss';
 import Image from '../image';
+import './description.scss';
 
 const Description = (props) => {
-  console.log(props);
+  console.log(props.selectedAnswerData);
   let selectedAnswer;
-  if (props.answersData) {
-    selectedAnswer = props.answersData.filter((item) => item.id === Number(props.selectedAnswerId))[0];
+  if (props.selectedAnswerData) {
+    selectedAnswer = props.selectedAnswerData;
   }
 
-
-
-  const descriptionBody = props.selectedAnswerId ? <div>
+  const descriptionBody = props.selectedAnswerData ? <div>
     <div className="row">
       <div className="col-md-6">
         <Image name={selectedAnswer.name} image={selectedAnswer.image} />
       </div>
       <div className="col-md-6">
-        {console.log(selectedAnswer)}
         <h4>{selectedAnswer.name}</h4>
         <div className="hr"></div>
         <div>{selectedAnswer.species}</div>
         <div className="hr"></div>
         <audio controls className="mt-3">
           <source src={selectedAnswer.audio} type="audio/mpeg" />
-                Your browser does not support the audio element.
-        </audio>
+                  Your browser does not support the audio element.
+          </audio>
       </div>
     </div>
     <p>{selectedAnswer.description}</p>
-
-
-  </div> :
-    <div>Послушайте плеер. <br />
-    Выберите птицу из списка</div>
+  </div> : <div>
+      Послушайте плеер.
+    <br />
+    Выберите птицу из списка
+  </div>
 
   return (
     <div className="description col-md-6 pl-0">

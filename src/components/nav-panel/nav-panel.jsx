@@ -1,12 +1,11 @@
 import React from 'react';
 
-import './nav-panel.scss';
 import NavItem from '../nav-item';
+import './nav-panel.scss';
 
 export default class NavPanel extends React.Component {
 
   render() {
-
     const navData = [
       { id: 0, title: "Разминка" },
       { id: 1, title: "Воробьиные" },
@@ -14,7 +13,7 @@ export default class NavPanel extends React.Component {
       { id: 3, title: "Певчик птицы" },
       { id: 4, title: "Хищные птицы" },
       { id: 5, title: "Морские птицы" },
-    ]
+    ];
 
     return (
       <nav className="nav nav-pills flex-column flex-sm-row">
@@ -26,7 +25,8 @@ export default class NavPanel extends React.Component {
           return (
             <NavItem key={id} title={title} isActive={isActive} />
           )
-        })}
+        }
+        )}
       </nav>
     )
   }

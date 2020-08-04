@@ -1,7 +1,7 @@
 import React from 'react';
 
-import './answers.scss';
 import Answer from '../answer';
+import './answers.scss';
 
 export default class Answers extends React.Component {
 
@@ -14,7 +14,8 @@ export default class Answers extends React.Component {
           return (
             <Answer id={id} key={id} title={name} onAnswerClick={this.props.onAnswerClick} />
           )
-        })}
+        }
+        )}
       </ul>
     )
   }
