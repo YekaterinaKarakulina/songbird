@@ -31,6 +31,7 @@ export default class App extends React.Component {
     score: 0,
     currentScore: 5,
     maxScore: 30,
+    isNextButtonDisabled: true
   }
 
   componentDidMount() {
@@ -78,7 +79,8 @@ export default class App extends React.Component {
         this.setState(({ currentScore, score }) => {
           return {
             score: score += currentScore,
-            isAnswerCorrect: true
+            isAnswerCorrect: true,
+            isNextButtonDisabled: false
           }
         })
       } else {
@@ -101,6 +103,7 @@ export default class App extends React.Component {
           questionNumber: questionNumber += 1,
           selectedAnswerId: null,
           isAnswerCorrect: false,
+          isNextButtonDisabled: true,
           answersState: [
             { id: 1, addClass: null },
             { id: 2, addClass: null },
@@ -130,7 +133,8 @@ export default class App extends React.Component {
       answersData,
       isAnswerCorrect,
       selectedAnswerId,
-      answersState } = this.state;
+      answersState,
+      isNextButtonDisabled } = this.state;
 
     const question = questionData ? <Question
       name={questionData.name}
@@ -158,7 +162,7 @@ export default class App extends React.Component {
           {answers}
           {description}
         </div>
-        <Button onNextButtonClick={this.onNextButtonClick} />
+        <Button disabled={isNextButtonDisabled} onNextButtonClick={this.onNextButtonClick} />
       </div>
     )
   }
