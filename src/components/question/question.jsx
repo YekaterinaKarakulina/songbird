@@ -4,7 +4,7 @@ import './question.scss';
 import Image from '../image';
 
 const Question = (props) => {
-  console.log(props);
+  console.log(`--- ${props.name} --- `);
   const { name, image, audio, isAnswerCorrect } = props;
 
   const imageComponent = isAnswerCorrect ?

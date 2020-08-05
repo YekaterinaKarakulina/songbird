@@ -10,6 +10,15 @@ const Description = (props) => {
     selectedAnswer = props.selectedAnswerData;
   }
 
+  const a = () => {
+    return (
+      <audio controls className="mt-3">
+        <source src={selectedAnswer.audio} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+      </audio>
+    )
+  }
+
   const descriptionBody = props.selectedAnswerData ? <div>
     <div className="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between pb-3">
       <div className="d-flex flex-column">
@@ -20,10 +29,13 @@ const Description = (props) => {
         <div className="hr dark"></div>
         <div>{selectedAnswer.species}</div>
         <div className="hr dark"></div>
-        <audio controls className="mt-3">
+
+
+        <audio controls className="descAudio mt-3">
           <source src={selectedAnswer.audio} type="audio/mpeg" />
                   Your browser does not support the audio element.
-          </audio>
+      </audio>
+
       </div>
     </div>
     <p>{selectedAnswer.description}</p>
