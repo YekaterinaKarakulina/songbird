@@ -42,18 +42,19 @@ export default class App extends React.Component {
       questionData: getQuestionData(questionNumber),
       answersData: getAnswersData(questionNumber)
     })
+
   }
 
   componentDidUpdate() {
     const { questionNumber, questionData, answersData } = this.state;
-    console.log(this.state);
     const newQuestionData = getQuestionData(questionNumber);
     const newAnswerData = getAnswersData(questionNumber);
-    if (questionData !== newQuestionData && answersData !== newAnswerData)
+    if (questionData !== newQuestionData && answersData !== newAnswerData) {
       this.setState({
         questionData: newQuestionData,
         answersData: newAnswerData
       })
+    }
   }
 
   updateAnswersState = (answerId, className) => {
@@ -71,6 +72,12 @@ export default class App extends React.Component {
 
   onAnswerClick = (event) => {
     console.log('onAnswerClickApp');
+    const a = document.querySelectorAll('audio')[1];
+    console.log(a);
+    if (a) {
+      a.currentTime = 0;
+      a.load();
+    }
     const answerId = Number(event.target.getAttribute('data-id'));
     this.setState({
       selectedAnswerId: answerId
@@ -126,6 +133,24 @@ export default class App extends React.Component {
 
   onAgainButtonClick = () => {
     console.log('again')
+    this.setState((state) => {
+      return {
+        currentScore: 5,
+        questionNumber: 0,
+        selectedAnswerId: null,
+        isAnswerCorrect: false,
+        isNextButtonDisabled: true,
+        isGameFinished: false,
+        answersState: [
+          { id: 1, addClass: null },
+          { id: 2, addClass: null },
+          { id: 3, addClass: null },
+          { id: 4, addClass: null },
+          { id: 5, addClass: null },
+          { id: 6, addClass: null },
+        ]
+      }
+    })
   }
 
   filterSelectedAnswer = () => {
@@ -135,6 +160,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    console.log('render');
+    console.log(this.state);
+
     const {
       score,
       maxScore,
@@ -169,7 +197,8 @@ export default class App extends React.Component {
       <FinishScreen
         score={score}
         maxScore={maxScore}
-        onAgainButtonClick={this.onAgainButtonClick} /> :
+        onAgainButtonClick={this.onAgainButtonClick} />
+      :
       <Fragment>
         {question}
         <div className="row mx-0 my-3 p-3 main">
@@ -182,7 +211,6 @@ export default class App extends React.Component {
           title="Далее" />
       </Fragment>
 
-    console.log(this.state);
     return (
       <div className="container">
         <Header score={score} />
