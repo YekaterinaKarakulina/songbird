@@ -78,6 +78,7 @@ export default class App extends React.Component {
     if (!this.state.isAnswerCorrect) {
       if (event.target.textContent === this.state.questionData.name) {
         this.updateAnswersState(answerId, 'correct');
+        new Audio("../assets/correct.mp3").play();
         this.setState(({ currentScore, score }) => {
           return {
             score: score += currentScore,
@@ -91,6 +92,7 @@ export default class App extends React.Component {
             currentScore: currentScore -= 1
           }
         })
+        new Audio("../assets/error.mp3").play();
         this.updateAnswersState(answerId, 'wrong');
       }
     }
