@@ -1,6 +1,6 @@
 .li-button {
   display: inline-block;
-  width: 0.75rem;;
+  width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
   background-color: rgba(80, 80, 80, 0.5);
@@ -14,7 +14,6 @@
 }
 
 .list-group-item {
-  
   &:hover {
     background-color: #EEE8AA;
     cursor: pointer;

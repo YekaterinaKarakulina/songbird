@@ -2,17 +2,17 @@ import React from 'react';
 
 import Image from '../image';
 import Button from '../button';
+
 import './finish-screen.scss';
 
 const FinishScreen = (props) => {
   const { score, maxScore, onAgainButtonClick } = props;
 
-
   const image = (score === maxScore) ?
     <Image name={"good job smile"} image={"../assets/great-job.png"} className=" smile" />
     : null;
 
-  const againButton = (score === maxScore) ? <Button
+  const againButton = (score !== maxScore) ? <Button
     disabled={false}
     onButtonClick={onAgainButtonClick}
     title="Попробовать еще раз" /> : null;

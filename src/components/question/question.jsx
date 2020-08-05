@@ -1,8 +1,9 @@
 import React from 'react';
 
-import './question.scss';
 import Image from '../image';
 import Player from '../audio-player';
+
+import './question.scss';
 
 const Question = (props) => {
   console.log(`--- ${props.name} --- `);
@@ -18,14 +19,7 @@ const Question = (props) => {
       <div className="d-flex flex-column mx-3 flex-fill">
         <div className="stars mt-3 mt-sm-0">{isAnswerCorrect ? name : '*****'}</div>
         <div className="hr"></div>
-
-        <Player
-          audio={audio} />
-        {/* <audio controls className="mt-3">
-          <source src={audio} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-        </audio> */}
-
+        <Player audio={audio} />
       </div>
     </div>
   )

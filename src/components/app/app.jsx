@@ -8,7 +8,6 @@ import Description from '../description';
 import Button from '../button';
 import FinishScreen from '../finish-screen';
 
-
 import { getQuestionData, getAnswersData } from '../../service';
 
 import './app.scss';
@@ -72,14 +71,6 @@ export default class App extends React.Component {
   }
 
   onAnswerClick = (event) => {
-    console.log('onAnswerClickApp');
-    /*  const a = document.querySelectorAll('audio')[1];
-     console.log(a);
-     if (a) {
-       a.currentTime = 0;
-       a.pause();
-       // a.load();
-     } */
     const answerId = Number(event.target.getAttribute('data-id'));
     this.setState({
       selectedAnswerId: answerId
@@ -126,7 +117,6 @@ export default class App extends React.Component {
         }
       })
     } else {
-      console.log('FINISH!!!!!');
       this.setState({
         isGameFinished: true
       })
@@ -160,9 +150,6 @@ export default class App extends React.Component {
     return answersData
       .filter((item) => item.id === Number(selectedAnswerId))[0];
   }
-
-
-
 
   render() {
     console.log('render');

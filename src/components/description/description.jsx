@@ -1,24 +1,15 @@
 import React from 'react';
 
 import Image from '../image';
-import './description.scss';
 import Player from '../audio-player';
 
+import './description.scss';
+
 const Description = (props) => {
-  console.log(props.selectedAnswerData);
   let selectedAnswer;
   if (props.selectedAnswerData) {
     selectedAnswer = props.selectedAnswerData;
   }
-
-  /* const a = () => {
-    return (
-      <audio controls className="mt-3">
-        <source src={selectedAnswer.audio} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-      </audio>
-    )
-  } */
 
   const descriptionBody = props.selectedAnswerData ? <div>
     <div className="d-flex flex-column flex-sm-row flex-md-column flex-lg-row justify-content-between pb-3">
@@ -30,14 +21,7 @@ const Description = (props) => {
         <div className="hr dark"></div>
         <div>{selectedAnswer.species}</div>
         <div className="hr dark"></div>
-        <Player
-          audio={selectedAnswer.audio} />
-
-        {/* <audio controls className="descAudio mt-3">
-          <source src={selectedAnswer.audio} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-      </audio> */}
-
+        <Player audio={selectedAnswer.audio} />
       </div>
     </div>
     <p>{selectedAnswer.description}</p>

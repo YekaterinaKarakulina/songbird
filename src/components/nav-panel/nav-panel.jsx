@@ -1,13 +1,11 @@
 import React from 'react';
 
 import NavItem from '../nav-item';
+
 import './nav-panel.scss';
 
 export default class NavPanel extends React.Component {
-
   render() {
-    /* console.log('nav panel');
-    console.log(this.props.questionNumber); */
     const navData = [
       { id: 0, title: "Разминка" },
       { id: 1, title: "Воробьиные" },

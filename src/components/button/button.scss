@@ -1,4 +1,6 @@
 .btn.btn-primary {
+  font-weight: 700;
+  letter-spacing: 3px;
   &:not(:disabled):not(.disabled) {
     background-color: darken($color:#00BFFF, $amount: 10);
   }
