@@ -6,13 +6,13 @@ export default class Button extends React.Component {
   render() {
     console.log(this.props);
     return (
-      <div className="d-flex mb-3">
+      <div className="d-flex my-3">
         <button
           type="button"
           className="btn btn-primary flex-fill"
           disabled={this.props.disabled}
-          onClick={this.props.onNextButtonClick}>
-          Next Level
+          onClick={this.props.onButtonClick}>
+          {this.props.title}
         </button>
       </div>
     )

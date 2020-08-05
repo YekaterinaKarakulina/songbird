@@ -1,0 +1,22 @@
+h1,
+.score {
+  color: #FFFAFA;
+}
+
+.smile {
+  display: inline-block;
+  width: 25rem;
+  height: 25rem;
+  @media(max-width: 991px) {
+    width: 20rem;
+    height: 20rem;
+  }
+  @media(max-width: 767px) {
+    width: 15rem;
+    height: 15rem;
+  }
+  @media(max-width: 575px) {
+    width: 10rem;
+    height: 10rem;
+  }
+}

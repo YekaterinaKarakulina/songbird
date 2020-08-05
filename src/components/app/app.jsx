@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Header from '../header';
 import NavPanel from '../nav-panel';
@@ -6,6 +6,7 @@ import Question from '../question';
 import Answers from '../answers';
 import Description from '../description';
 import Button from '../button';
+import FinishScreen from '../finish-screen';
 
 import { getQuestionData, getAnswersData } from '../../service';
 
@@ -31,7 +32,8 @@ export default class App extends React.Component {
     score: 0,
     currentScore: 5,
     maxScore: 30,
-    isNextButtonDisabled: true
+    isNextButtonDisabled: true,
+    isGameFinished: false
   }
 
   componentDidMount() {
@@ -116,7 +118,14 @@ export default class App extends React.Component {
       })
     } else {
       console.log('FINISH!!!!!');
+      this.setState({
+        isGameFinished: true
+      })
     }
+  }
+
+  onAgainButtonClick = () => {
+    console.log('again')
   }
 
   filterSelectedAnswer = () => {
@@ -128,13 +137,15 @@ export default class App extends React.Component {
   render() {
     const {
       score,
+      maxScore,
       questionNumber,
       questionData,
       answersData,
       isAnswerCorrect,
       selectedAnswerId,
       answersState,
-      isNextButtonDisabled } = this.state;
+      isNextButtonDisabled,
+      isGameFinished } = this.state;
 
     const question = questionData ? <Question
       name={questionData.name}
@@ -152,17 +163,31 @@ export default class App extends React.Component {
       selectedAnswerData={this.filterSelectedAnswer()}
     /> : <Description selectedAnswerData={undefined} />
 
-    console.log(this.state);
-    return (
-      <div className="container">
-        <Header score={score} />
-        <NavPanel questionNumber={questionNumber} />
+
+
+    const mainComponent = isGameFinished ?
+      <FinishScreen
+        score={score}
+        maxScore={maxScore}
+        onAgainButtonClick={this.onAgainButtonClick} /> :
+      <Fragment>
         {question}
         <div className="row mx-0 my-3 p-3 main">
           {answers}
           {description}
         </div>
-        <Button disabled={isNextButtonDisabled} onNextButtonClick={this.onNextButtonClick} />
+        <Button
+          disabled={isNextButtonDisabled}
+          onButtonClick={this.onNextButtonClick}
+          title="Далее" />
+      </Fragment>
+
+    console.log(this.state);
+    return (
+      <div className="container">
+        <Header score={score} />
+        <NavPanel questionNumber={questionNumber} />
+        {mainComponent}
       </div>
     )
   }
