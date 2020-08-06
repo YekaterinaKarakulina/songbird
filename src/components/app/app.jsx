@@ -41,7 +41,7 @@ export default class App extends React.Component {
     const { questionNumber } = this.state;
     this.setState({
       questionData: getQuestionData(questionNumber),
-      answersData: getAnswersData(questionNumber)
+      answersData: getAnswersData(questionNumber).sort(() => Math.random() - 0.5)
     })
 
   }
@@ -51,6 +51,7 @@ export default class App extends React.Component {
     const newQuestionData = getQuestionData(questionNumber);
     const newAnswerData = getAnswersData(questionNumber);
     if (questionData !== newQuestionData && answersData !== newAnswerData) {
+      newAnswerData.sort(() => Math.random() - 0.5);
       this.setState({
         questionData: newQuestionData,
         answersData: newAnswerData
