@@ -7,14 +7,7 @@ import './question.scss';
 
 export default class Question extends React.Component {
 
-
-  stopAudio = () => {
-    console.log('stop audio');
-  }
-
-
   render() {
-    console.log(`--- ${this.props.name} --- `);
 
     const { name, image, audio, isAnswerCorrect } = this.props;
 

@@ -34,29 +34,32 @@ export default class App extends React.Component {
     maxScore: 30,
     isNextButtonDisabled: true,
     isGameFinished: false,
-    stopAudio: false
   }
 
   componentDidMount() {
     const { questionNumber } = this.state;
     this.setState({
       questionData: getQuestionData(questionNumber),
-      answersData: getAnswersData(questionNumber).sort(() => Math.random() - 0.5)
+      answersData: getAnswersData(questionNumber)
     })
-
   }
 
   componentDidUpdate() {
     const { questionNumber, questionData, answersData } = this.state;
-    const newQuestionData = getQuestionData(questionNumber);
-    const newAnswerData = getAnswersData(questionNumber);
-    if (questionData !== newQuestionData && answersData !== newAnswerData) {
-      newAnswerData.sort(() => Math.random() - 0.5);
-      this.setState({
-        questionData: newQuestionData,
-        answersData: newAnswerData
-      })
+    if (questionNumber !== 0) {
+      const newAnswerData = getAnswersData(questionNumber);
+      if (answersData !== newAnswerData) {
+        const newQuestionData = getQuestionData(questionNumber);
+        if (questionData !== newQuestionData) {
+          this.setState({
+            questionData: newQuestionData,
+            answersData: newAnswerData
+          })
+        }
+
+      }
     }
+
   }
 
   updateAnswersState = (answerId, className) => {
@@ -86,7 +89,6 @@ export default class App extends React.Component {
             score: score += currentScore,
             isAnswerCorrect: true,
             isNextButtonDisabled: false,
-            stopAudio: true, //
           }
         })
       } else {
@@ -111,7 +113,6 @@ export default class App extends React.Component {
           selectedAnswerId: null,
           isAnswerCorrect: false,
           isNextButtonDisabled: true,
-          stopAudio: false, //
           answersState: [
             { id: 1, addClass: null },
             { id: 2, addClass: null },
@@ -130,9 +131,9 @@ export default class App extends React.Component {
   }
 
   onAgainButtonClick = () => {
-    console.log('again')
     this.setState((state) => {
       return {
+        score: 0,
         currentScore: 5,
         questionNumber: 0,
         selectedAnswerId: null,
@@ -158,9 +159,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log('render');
-    console.log(this.state);
-
     const {
       score,
       maxScore,
@@ -188,8 +186,6 @@ export default class App extends React.Component {
     const description = selectedAnswerId ? <Description
       selectedAnswerData={this.filterSelectedAnswer()}
     /> : <Description selectedAnswerData={undefined} />
-
-
 
     const mainComponent = isGameFinished ?
       <FinishScreen
