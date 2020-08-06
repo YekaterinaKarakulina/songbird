@@ -7,7 +7,7 @@ const getQuestionData = (questionNumber) => {
 }
 
 const getAnswersData = (questionNumber) => {
-  const answersData = birdData[questionNumber];
+  const answersData = birdData[questionNumber].sort(() => Math.random() - 0.5);
   return answersData;
 }
 
