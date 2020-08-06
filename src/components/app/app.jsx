@@ -33,7 +33,8 @@ export default class App extends React.Component {
     currentScore: 5,
     maxScore: 30,
     isNextButtonDisabled: true,
-    isGameFinished: false
+    isGameFinished: false,
+    stopAudio: false
   }
 
   componentDidMount() {
@@ -83,7 +84,8 @@ export default class App extends React.Component {
           return {
             score: score += currentScore,
             isAnswerCorrect: true,
-            isNextButtonDisabled: false
+            isNextButtonDisabled: false,
+            stopAudio: true, //
           }
         })
       } else {
@@ -108,6 +110,7 @@ export default class App extends React.Component {
           selectedAnswerId: null,
           isAnswerCorrect: false,
           isNextButtonDisabled: true,
+          stopAudio: false, //
           answersState: [
             { id: 1, addClass: null },
             { id: 2, addClass: null },

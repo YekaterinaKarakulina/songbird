@@ -4,12 +4,32 @@ import 'react-h5-audio-player/src/styles.scss'
 
 import './audio-player.scss';
 
-const Player = (props) => (
-  <AudioPlayer
-    autoPlay={false}
-    src={props.audio}
-    autoPlayAfterSrcChange={false}
-  />
-);
+export default class Player extends React.Component {
 
-export default Player;
+  constructor(props) {
+    super(props)
+    this.player = React.createRef()
+  }
+
+  stopAudio = () => {
+    const { isAnswerCorrect } = this.props;
+
+    if (isAnswerCorrect) {
+      const audioElement = this.player.current.audio.current;
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+  }
+
+  render() {
+    return (
+      <AudioPlayer
+        autoPlay={false}
+        src={this.props.audio}
+        autoPlayAfterSrcChange={false}
+        isAnswerCorrect={this.stopAudio()}
+        ref={this.player}
+      />
+    )
+  }
+}
