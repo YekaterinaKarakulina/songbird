@@ -13,7 +13,7 @@ export default class Question extends React.Component {
 
     const imageComponent = isAnswerCorrect ?
       <Image name={name} image={image} /> :
-      <Image name={"bird image"} image={"../assets/bird.jpg"} />
+      <Image name={"bird image"} image={"../assets/question.png"} />
 
     return (
       <div className="question d-flex flex-column flex-sm-row p-3">

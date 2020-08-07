@@ -7,12 +7,12 @@ import './nav-panel.scss';
 export default class NavPanel extends React.Component {
   render() {
     const navData = [
-      { id: 0, title: "Разминка" },
-      { id: 1, title: "Воробьиные" },
-      { id: 2, title: "Лесные птицы" },
-      { id: 3, title: "Певчик птицы" },
-      { id: 4, title: "Хищные птицы" },
-      { id: 5, title: "Морские птицы" },
+      { id: 0, title: "Животные Африки" },
+      { id: 1, title: "Животные Сибири" },
+      { id: 2, title: "Приматы" },
+      { id: 3, title: "Животные фермы" },
+      { id: 4, title: "Птицы" },
+      { id: 5, title: "Насекомые" },
     ];
 
     return (

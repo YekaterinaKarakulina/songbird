@@ -7,10 +7,10 @@ export default class Header extends React.Component {
     return (
       <header className="d-flex justify-content-between align-items-center">
         <h1 className="title">
-          <span>Song</span>
-          <span>Bird</span>
+          <span>Animal</span>
+          <span>Farm</span>
         </h1>
-        <div className="score">Score:
+        <div className="score">Счёт:
           <span> {this.props.score}</span>
         </div>
       </header>
