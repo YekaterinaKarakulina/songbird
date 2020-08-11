@@ -1,13 +1,14 @@
 import React from 'react';
 
-const NavItem = (props) => {
+const NavItem = ({ isActive, title }) => {
   let classNames = 'flex-sm-fill text-sm-center nav-link d-flex justify-content-center';
-  if (props.isActive) {
+  if (isActive) {
     classNames += ' active';
   }
 
   return (
-    <a className={classNames} href="#">{props.title}</a>
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <a className={classNames} href="#">{title}</a>
   )
 }
 

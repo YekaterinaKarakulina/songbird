@@ -1,19 +1,21 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
 
-export default class Answer extends React.Component {
-  render() {
-    let classNames = "li-button ";
-    if (this.props.addClass) {
-      classNames += this.props.addClass
-    }
-    return (
-      <li
-        data-id={this.props.id}
-        className="list-group-item"
-        onClick={this.props.onAnswerClick}>
-        <span className={classNames}></span>
-        {this.props.title}
-      </li>
-    )
+const Answer = ({ addClass, id, title, onAnswerClick }) => {
+
+  let classNames = "li-button ";
+  if (addClass) {
+    classNames += addClass
   }
+  return (
+    <li
+      data-id={id}
+      className="list-group-item"
+      onClick={onAnswerClick}>
+      <span className={classNames} />
+      {title}
+    </li>
+  )
 }
+
+export default Answer;

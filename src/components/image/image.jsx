@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Image = (props) => {
-  const { image, name, className } = props;
+const Image = ({ image, name, className }) => {
+
   let classNames = 'align-self-center';
   if (className) {
     classNames += className

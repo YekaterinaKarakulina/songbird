@@ -22,10 +22,13 @@ export default class Player extends React.Component {
   }
 
   render() {
+
+    const { audio } = this.props;
+
     return (
       <AudioPlayer
         autoPlay={false}
-        src={this.props.audio}
+        src={audio}
         autoPlayAfterSrcChange={false}
         isAnswerCorrect={this.stopAudio()}
         ref={this.player}

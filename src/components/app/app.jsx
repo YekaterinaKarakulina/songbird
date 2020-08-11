@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+
+import React from 'react';
 
 import Header from '../header';
 import NavPanel from '../nav-panel';
@@ -14,6 +15,7 @@ import './app.scss';
 
 export default class App extends React.Component {
 
+  // eslint-disable-next-line react/state-in-constructor
   state = {
     questionNumber: 0,
     questionsAmount: 5,
@@ -51,6 +53,7 @@ export default class App extends React.Component {
       if (answersData !== newAnswerData) {
         const newQuestionData = getQuestionData(questionNumber);
         if (questionData !== newQuestionData) {
+          // eslint-disable-next-line react/no-did-update-set-state
           this.setState({
             questionData: newQuestionData,
             answersData: newAnswerData
@@ -68,6 +71,7 @@ export default class App extends React.Component {
       const currentSelected = newAnswersState.filter((el) => el.id === answerId)
       const ind = newAnswersState.indexOf(currentSelected[0]);
       currentSelected[0].addClass = className;
+      // eslint-disable-next-line prefer-destructuring
       newAnswersState[ind] = currentSelected[0];
       return {
         answersState: newAnswersState
@@ -76,25 +80,29 @@ export default class App extends React.Component {
   }
 
   onAnswerClick = (event) => {
+
+    const { isAnswerCorrect, questionData } = this.state;
+
     const answerId = Number(event.target.getAttribute('data-id'));
     this.setState({
       selectedAnswerId: answerId
     })
-    if (!this.state.isAnswerCorrect) {
-      if (event.target.textContent === this.state.questionData.name) {
+    if (!isAnswerCorrect) {
+      if (event.target.textContent === questionData.name) {
         this.updateAnswersState(answerId, 'correct');
         new Audio("../assets/correct.mp3").play();
         this.setState(({ currentScore, score }) => {
           return {
-            score: score += currentScore,
+            score: score + currentScore,
             isAnswerCorrect: true,
             isNextButtonDisabled: false,
           }
         })
       } else {
+        // TODO
         this.setState(({ currentScore }) => {
           return {
-            currentScore: currentScore -= 1
+            currentScore: currentScore - 1
           }
         })
         new Audio("../assets/error.mp3").play();
@@ -106,10 +114,11 @@ export default class App extends React.Component {
   onNextButtonClick = () => {
     const { questionsAmount, questionNumber, isAnswerCorrect } = this.state;
     if (isAnswerCorrect && questionsAmount > questionNumber) {
+      // eslint-disable-next-line no-shadow
       this.setState(({ questionNumber }) => {
         return {
           currentScore: 5,
-          questionNumber: questionNumber += 1,
+          questionNumber: questionNumber + 1,
           selectedAnswerId: null,
           isAnswerCorrect: false,
           isNextButtonDisabled: true,
@@ -131,7 +140,7 @@ export default class App extends React.Component {
   }
 
   onAgainButtonClick = () => {
-    this.setState((state) => {
+    this.setState(() => {
       return {
         score: 0,
         currentScore: 5,
@@ -193,7 +202,7 @@ export default class App extends React.Component {
         maxScore={maxScore}
         onAgainButtonClick={this.onAgainButtonClick} />
       :
-      <Fragment>
+      <>
         {question}
         <div className="row mx-0 my-3 p-3 main">
           {answers}
@@ -203,7 +212,7 @@ export default class App extends React.Component {
           disabled={isNextButtonDisabled}
           onButtonClick={this.onNextButtonClick}
           title="Далее" />
-      </Fragment>
+      </>
 
     return (
       <div className="container">

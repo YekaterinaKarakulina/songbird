@@ -25,6 +25,7 @@ const config = (env, options) => ({
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        loader: 'eslint-loader',
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

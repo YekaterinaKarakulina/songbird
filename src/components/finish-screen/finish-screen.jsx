@@ -5,11 +5,10 @@ import Button from '../button';
 
 import './finish-screen.scss';
 
-const FinishScreen = (props) => {
-  const { score, maxScore, onAgainButtonClick } = props;
+const FinishScreen = ({ score, maxScore, onAgainButtonClick }) => {
 
   const image = (score === maxScore) ?
-    <Image name={"good job smile"} image={"../assets/great-job.png"} className=" smile" />
+    <Image name="good job smile" image="../assets/great-job.png" className=" smile" />
     : null;
 
   const againButton = (score !== maxScore) ? <Button
