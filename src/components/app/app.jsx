@@ -59,10 +59,8 @@ export default class App extends React.Component {
             answersData: newAnswerData
           })
         }
-
       }
     }
-
   }
 
   updateAnswersState = (answerId, className) => {
@@ -81,12 +79,14 @@ export default class App extends React.Component {
 
   onAnswerClick = (event) => {
 
-    const { isAnswerCorrect, questionData } = this.state;
+    const { isAnswerCorrect, questionData, answersState } = this.state;
 
     const answerId = Number(event.target.getAttribute('data-id'));
+
     this.setState({
       selectedAnswerId: answerId
     })
+
     if (!isAnswerCorrect) {
       if (event.target.textContent === questionData.name) {
         this.updateAnswersState(answerId, 'correct');
@@ -99,14 +99,17 @@ export default class App extends React.Component {
           }
         })
       } else {
-        // TODO
-        this.setState(({ currentScore }) => {
-          return {
-            currentScore: currentScore - 1
-          }
-        })
-        new Audio("../assets/error.mp3").play();
-        this.updateAnswersState(answerId, 'wrong');
+        const newAnswersState = answersState;
+        const currentSelected = newAnswersState.filter((el) => el.id === answerId);
+        if (currentSelected[0].addClass === null) {
+          this.setState(({ currentScore }) => {
+            return {
+              currentScore: currentScore - 1
+            }
+          })
+          new Audio("../assets/error.mp3").play();
+          this.updateAnswersState(answerId, 'wrong');
+        }
       }
     }
   }
@@ -169,16 +172,10 @@ export default class App extends React.Component {
 
   render() {
     const {
-      score,
-      maxScore,
-      questionNumber,
-      questionData,
-      answersData,
-      isAnswerCorrect,
-      selectedAnswerId,
-      answersState,
-      isNextButtonDisabled,
-      isGameFinished } = this.state;
+      score, maxScore,
+      questionNumber, questionData, answersData,
+      isAnswerCorrect, selectedAnswerId, answersState,
+      isNextButtonDisabled, isGameFinished } = this.state;
 
     const question = questionData ? <Question
       name={questionData.name}
