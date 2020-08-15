@@ -99,6 +99,7 @@ export default class App extends React.Component {
           }
         })
       } else {
+        new Audio("../assets/error.mp3").play();
         const newAnswersState = answersState;
         const currentSelected = newAnswersState.filter((el) => el.id === answerId);
         if (currentSelected[0].addClass === null) {
@@ -107,7 +108,6 @@ export default class App extends React.Component {
               currentScore: currentScore - 1
             }
           })
-          new Audio("../assets/error.mp3").play();
           this.updateAnswersState(answerId, 'wrong');
         }
       }
