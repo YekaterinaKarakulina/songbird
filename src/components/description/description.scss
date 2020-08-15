@@ -1,0 +1,40 @@
+h4 {
+  margin: 0;
+}
+
+audio {
+  margin: 0;
+}
+
+.description {
+  letter-spacing: 0.1rem;
+  font-size: 0.75rem;
+  min-height: 100%;
+  &>ul, &>ul>li {
+    height: 100%;
+    &:hover {
+      background-color: #FFFAFA;
+      cursor: initial;
+    }
+  }
+}
+
+.hr{
+  border: 1px solid #FFFAFA;
+  margin: 0.25rem 0;
+  &.dark {
+    border: 1px solid rgba(80, 80, 80, 0.5);
+  }
+}
+
+audio {
+  width: stretch;
+}
+
+img {
+  width: 10rem;
+  height: 8rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+}

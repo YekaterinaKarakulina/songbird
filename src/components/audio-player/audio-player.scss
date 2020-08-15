@@ -1,0 +1,16 @@
+.rhap_container {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.rhap_time {
+  color: #868686;
+}
+
+.rhap_progress-indicator {
+  background: darken($color:#00BFFF, $amount: 10);;
+}
+
+.rhap_play-pause-button {
+  color: darken($color:#00BFFF, $amount: 10);
+}
