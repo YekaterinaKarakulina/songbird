@@ -48,17 +48,15 @@ export default class App extends React.Component {
 
   componentDidUpdate() {
     const { questionNumber, questionData, answersData } = this.state;
-    if (questionNumber !== 0) {
-      const newAnswerData = getAnswersData(questionNumber);
-      if (answersData !== newAnswerData) {
-        const newQuestionData = getQuestionData(questionNumber);
-        if (questionData !== newQuestionData) {
-          // eslint-disable-next-line react/no-did-update-set-state
-          this.setState({
-            questionData: newQuestionData,
-            answersData: newAnswerData
-          })
-        }
+    const newAnswerData = getAnswersData(questionNumber);
+    if (answersData !== newAnswerData) {
+      const newQuestionData = getQuestionData(questionNumber);
+      if (questionData !== newQuestionData) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          questionData: newQuestionData,
+          answersData: newAnswerData
+        })
       }
     }
   }
